@@ -1,4 +1,4 @@
-name: Realisation des tests unitaires
+name: pull request et build docker
 
 
 on: 
@@ -58,4 +58,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/tpAction.latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/tpaction.latest
