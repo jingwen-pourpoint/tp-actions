@@ -1,0 +1,50 @@
+name: Realisation des tests unitaires
+
+
+on: 
+  pull_request:
+    types: [closed]
+
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Repository
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.7'
+
+      - run: pip install -r requirements.txt
+      - run: pytest
+        
+      - name: Test Unitaire
+        run: exit 1 # fail la step
+        # Create issue
+
+      - name: Create issue if fail test
+        if: failure()
+        uses: dacbd/create-issue-action@main
+        with :
+         token : ${{secrets.GITHUB_TOKEN}}
+         title: Test unitaire fail
+         body: "les tests ont echoués
+          Workflow name : `${{github.workflow}}`
+          Job name : `${{github.job}}`
+          Merci de vérifier le code"
+
+
+    
+
+  Build-App:
+    runs-on: ubuntu-latest
+    needs : test
+    steps:
+      - name: Récupération du Repo
+        uses: actions/checkout@v3
+        
+      - name: Build App
+        run: echo "Je build l'app"
