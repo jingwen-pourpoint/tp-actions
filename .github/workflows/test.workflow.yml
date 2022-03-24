@@ -5,8 +5,10 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
+      - name: Get Repository
+        uses: actions/checkout@v3
+        
       - name: Test Unitaire
         run: exit 1 # fail la step
         # Create issue
@@ -25,8 +27,7 @@ jobs:
 
     
         
-      # - name: Get Repository
-      #   uses: actions/checkout@v3
+
       #   with:
       #     ref: refs/tags/${{ matrix.app }}
 
