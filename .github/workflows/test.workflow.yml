@@ -30,7 +30,7 @@ jobs:
           Workflow name : `${{github.workflow}}`
           Job name : `${{github.job}}`
           Nom de la personne: `${{ github.event.head_commit.author.name }}`
-          Email de la persoone: `${{ github.event.head_commit.author.email }}`
+          Email de la personne: `${{ github.event.head_commit.author.email }}`
           Merci de vérifier le code"
 
 
